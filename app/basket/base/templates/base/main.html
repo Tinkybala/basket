@@ -1,0 +1,12 @@
+{% extends 'base/index.html' %}
+
+{% block title %}Main{% endblock %}
+
+{% block content %}
+
+<h1>Mainpage</h1>
+<aside>
+    <h2>Filter</h2>
+</aside>
+{% include 'base/events_list.html' with events=events %}
+{% endblock %}
