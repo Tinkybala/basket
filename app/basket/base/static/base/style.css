@@ -1,0 +1,11 @@
+
+
+.content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.eventCard {
+    border: 2px black solid;
+}
+

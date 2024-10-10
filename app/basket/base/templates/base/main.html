@@ -5,8 +5,12 @@
 {% block content %}
 
 <h1>Mainpage</h1>
-<aside>
-    <h2>Filter</h2>
-</aside>
+<div class="content">
+    <aside>
+        <h2>Filter</h2>
+    </aside>
+
 {% include 'base/events_list.html' with events=events %}
+{% include 'base/my_events.html' %}
+</div>
 {% endblock %}
