@@ -1,3 +1,14 @@
+<!--the link to the user's profile should include the user_id variable { url 'profile' }-->
+
 <header class="navbar">
+
     <h1><a href="{% url 'main' %}">LOGO</a></h1>
+
+    <!--add profile part if user is logged-in-->
+    {% if request.user.is_authenticated %}
+    <div>
+        <a href="{% url 'logout' %}">logout</a>
+        <a href="https://google.com">{{request.user.username}}</a>
+    </div>
+    {% endif %}
 </header>

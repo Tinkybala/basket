@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}basket{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'base/style.css' %}">
+    {% block extra_styles %}
+    {% endblock %}
 </head>
 <body>
     {% include 'base/navbar.html' %}

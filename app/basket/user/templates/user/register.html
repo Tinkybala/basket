@@ -1,0 +1,46 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'user/forms.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <label>
+        E-mail: 
+        <input type="email" name="email"/>
+    </label>
+    <label>
+        Username: 
+        <input type="text" name="username"/>
+    </label>
+    <label>
+        First Name: 
+        <input type="text" name="first_name"/>
+    </label>
+    <label>
+        Last Name: 
+        <input type="text" name="last_name"/>
+    </label>
+    <label>
+        Password:  
+        <input type="password" name="password"/>
+    </label>
+    <label>
+        Confirm Password:  
+        <input type="password" name="confirm_password"/>
+    </label>
+    {% if error %}
+        {{error}}
+    {% endif %}
+    <button type="submit">Sign Up</button>
+    <p>Already registered? <a href="https://google.com">Login here</a></p> <!--update link to login page-->
+    
+</form>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'user/forms.css' %}">
+{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <label>
+        Username: 
+        <input type="text" name="username">
+    </label>
+    <label>
+        Password:  
+        <input type="password" name="password">
+    </label>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+    <button type="submit">login</button>
+</form>
+{% endblock %}
