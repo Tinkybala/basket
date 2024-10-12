@@ -1,0 +1,160 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <main class="create-room layout">
+    <div class="container">
+      <div class="layout__box">
+        <div class="layout__boxHeader">
+          <div class="layout__boxTitle">
+            <a href="{% url 'home' %}">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                <title>arrow-left</title>
+                <path
+                  d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z">
+                </path>
+              </svg>
+            </a>
+            <h3>Create Basketball Event</h3>
+          </div>
+        </div>
+        <div class="layout__body">
+          <!-- <form class="form" action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form__group">
+              <label for="room_location">Location</label> 
+              <input required type="text" value="{{room.location}}" name="location" list="location-list">
+              <datalist id="location-list"> 
+                  {% for topic in topics %}
+                  <option value="{{room.location}}">{{room.location}}</option>
+                  {% endfor %}
+              </datalist>
+            </div> -->
+
+            <!-- <div class="form__group">
+              <label for="room_name">Event Name</label>
+              {{topic.name}}
+            </div> -->
+
+            <!-- <div class="form__group">
+              <label for="room_name">Event Name</label>
+              {{form.name}}
+            </div>
+
+            <div class="form__group">
+              <label for="room_name">Date</label>
+              {{form.date}}
+            </div>
+
+            <div class="form__group">
+              <label for="room_name">Start Time</label>
+              {{form.start_time}}
+            </div>
+
+            <div class="form__group">
+              <label for="room_name">End Time</label>
+              {{form.end_time}}
+            </div>
+
+            <div class="form__group">
+              <label for="room_name">Pax Required</label>
+              {{form.pax_required}}
+            </div>
+
+            <div class="form__group">
+                <label for="room_name">Additional Information</label>
+                {{form.description}}
+              
+            </div> -->
+
+
+ <!--         <div class="form__group">
+              <label for="room_topic">Topic</label>
+              <input required type="text" name="topic" id="room_topic" list="topic-list" />
+              <datalist id="topic-list">
+                <select id="room_topic">
+                  <option value="">Select your topic</option>
+                  <option value="Python">Python</option>
+                  <option value="Django">Django</option>
+                </select>
+              </datalist>
+
+            </div>-->  
+            <!-- <div class="form__action">
+              <a class="btn btn--dark" href="{% url 'home' %}">Cancel</a>
+              <button class="btn btn--main" type="submit">Create</button>
+            </div>
+          </form> -->
+
+          <form class="form" action="" method="POST">
+            {% csrf_token %}
+            
+            <!-- Location Field -->
+            <div class="form__group">
+              <label for="room_location">Location</label> 
+              <input required type="text" name="location" id="room_location" list="location-list" value="{{ form.location.value }}">
+              <datalist id="location-list">
+                  <!-- Loop over the available locations from the context -->
+                  {% for location in locations %}
+                  <option value="{{ location }}">{{ location }}</option>
+                  {% endfor %}
+              </datalist>
+            </div>
+        
+            <!-- Event Name Field -->
+            <div class="form__group">
+              <label for="room_name">Event Name</label>
+              {{ form.name }}
+            </div>
+        
+            <!-- Date Picker Field -->
+            <div class="form__group">
+              <label for="date">Select a Date:</label>
+              {{ form.date }}
+            </div>
+
+            <!-- Start Time Picker Field -->
+            <div class="form__group">
+              <label for="start_time">Start Time:</label>
+              {{ form.start_time }}
+            </div>
+
+            <!-- End Time Picker Field -->
+            <div class="form__group">
+              <label for="end_time">End Time:</label>
+              {{ form.end_time }}
+            </div>
+        
+            <!-- Pax Required Field -->
+            <div class="form__group">
+              <label for="room_pax_required">Pax Required</label>
+              {{ form.pax_required }}
+            </div>
+        
+            <!-- Description Field -->
+            <div class="form__group">
+              <label for="room_description">Additional Information</label>
+              {{ form.description }}
+            </div>
+        
+            <!-- Display form errors -->
+            {% if form.errors %}
+                <ul class="errorlist">
+                    {% for field, errors in form.errors.items %}
+                        <li>{{ field }}: {{ errors|join:", " }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        
+            <!-- Form Actions -->
+            <div class="form__action">
+              <a class="btn btn--dark" href="{% url 'home' %}">Cancel</a>
+              <button class="btn btn--main" type="submit">Create</button>
+            </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {% endblock content %}
