@@ -1,3 +1,25 @@
+<div class="filter">
+    <form method="get">
+        <fieldset>
+            <legend>Filter</legend>
+            <label>
+                Start Date: 
+                <input type="date" name="start_date">
+            </label>
+            <label>
+                End Date: 
+                <input type="date" name="end_date">
+            </label>
+            <label>
+                Only Show Available: 
+                <input type="checkbox" name="availability">
+            </label>
+        
+            <button type="submit">Filter</button>
+        </fieldset>
+    </form>
+</div>
+
 <div class="eventsList">
     <h2>Events</h2>
 {% for event in all_events %}
