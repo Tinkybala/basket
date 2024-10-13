@@ -72,6 +72,11 @@ def logout_view(request):
     logout(request)
     return redirect(reverse("login"))
 
+# update user details to be fixed
 def profile(request, user_id):
-user = User.objects.get(id=user_id)
-return render(request, "user/profile.html", {"user": user})
+    user = User.objects.get(id=user_id)
+
+    if request.method == "POST":
+        print("fix this part")
+        # Fix this
+    return render(request, "user/profile.html", {"user": user})

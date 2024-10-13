@@ -1,10 +1,11 @@
 <!--Open event links to the specifc event with event.id as argument-->
 
-<div class="eventCard">
+<div class="eventCard" id="{{event.id}}">
     <h2>{{event.title}}</h2>
     <p>Creator: {{event.creator}}</p>
     <p>Description: {{event.additional_info}}</p>
     <p>pax: {{event.pax}}</p>
     <P>date: {{event.start}} - {{event.end}}</P>
-    <a href="https://google.com">Open Event</a>
+    <a href="{% url 'event_detail' event.id %}">Open Event</a>
 </div>
+

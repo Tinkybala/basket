@@ -10,4 +10,16 @@
 {% include 'base/events_list.html' with all_events=all_events %}
 {% include 'base/my_events.html' with user_events=user_events %} 
 </div>
+
+<script>
+    Array.from(document.getElementsByClassName("eventCard")).forEach(card => {
+        const id = card.getAttribute('id');
+        card.addEventListener("click", () => {
+            console.log(id);
+            window.location.href = "{% url 'event_detail' 0 %}".replace("0", id);
+        });
+    });
+
+    
+</script>
 {% endblock %}

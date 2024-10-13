@@ -31,6 +31,8 @@ body {
     padding: 10px;
     border-radius: 5px;
     transition: transform 0.1s;
+    background-color: aliceblue;
+    cursor: pointer;
 }
 
 .eventCard:hover {
@@ -41,5 +43,23 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.eventsList .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.eventsList .addButton {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eventsList .addButton:hover {
+    fill: darkolivegreen;
 }
 

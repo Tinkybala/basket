@@ -1,11 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User Profile</title>
-</head>
-<body>
-    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-    <p>Email: {{ user.email }}</p>
-    <p>Description: {{ user.description }}</p>
-</body>
-</html>
+{% extends 'base/index.html' %}
+
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'user/forms.css' %}">
+{% endblock %}
+
+{% block content %}
+<form class="profile" action="" method="post">
+    <h2>User Profile</h2>
+    <label>
+        Username: 
+        <input type="text" placeholder="{{user.username}}" name="username">
+    </label>
+    <label>
+        First Name: 
+        <input type="text" placeholder="{{user.first_name}}" name="first_name">
+    </label>
+    <label>
+        Last Name: 
+        <input type="text" placeholder="{{user.last_name}}" name="last_name">
+    </label>
+    <label>
+        Email:  
+        <input type="email" placeholder="{{user.email}}" name="email">
+    </label>
+    <label>
+        Description:  
+        <textarea name="description">{{user.description}}</textarea>
+    </label>
+    <button type="submit">Update</button>
+</form>
+{% endblock %}
+
