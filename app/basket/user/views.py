@@ -5,6 +5,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib import messages
 from django.urls import reverse
+from django.shortcuts import render
+from .models import User
+
+
 
 # Create your views here.
 def register(request):
@@ -67,3 +71,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect(reverse("login"))
+
+def profile(request, user_id):
+user = User.objects.get(id=user_id)
+return render(request, "user/profile.html", {"user": user})
