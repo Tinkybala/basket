@@ -60,6 +60,7 @@
 
       </div>
       <div class="room__box scroll">
+
         <div class="room__header scroll">
           <div class="room__info">
             <h3>{{room.name}}</h3>
@@ -84,9 +85,10 @@
             <p><strong>Number of Participants:</strong> {{ room.participants.count }} / {{ room.pax_required }}</p>
 
             <!-- Additional Information with a box around it -->
+            <h4><strong>Additional Information:</strong></h4>
             <div class="additional-info-box">
-              <p><strong>Additional Information:</strong></p>
-              <p>{{ room.description }}</p>
+              
+              <p>- {{ room.description }}</p>
             </div>
           </div>
           <!-- Event Information End -->
@@ -95,7 +97,13 @@
         <div class="extra-info-section">
           <!-- Map Box with Map and Location Button -->
           <div class="map-box">
-            <h4>Event Location</h4>
+            <h4>Event Location:  {{ room.location }}</h4>
+
+              <!-- Google Static Maps API URL -->
+              <img 
+              src="https://maps.googleapis.com/maps/api/staticmap?center={{ latitude }},{{ longitude }}&zoom=15&size=600x300&markers=color:red%7C{{ latitude }},{{ longitude }}&key={{ GOOGLE_API_KEY }}" 
+              alt="Map showing event location"
+               />
 
             <!-- Button Section for setting the location -->
             <div class="location-button-container">
@@ -125,6 +133,7 @@
             {% endif %}
           </form>
         </div>
+
       </div>
     </div>
     <!-- Room End -->
@@ -149,6 +158,16 @@
     <!-- Participants End -->
 
   </div>
+
+  <script>
+    // Scroll to the top of the room__box section on page load
+    window.onload = function () {
+      var roomBox = document.querySelector('.room__box');
+      if (roomBox) {
+        roomBox.scrollTop = 0; // Ensure that the room__box scrolls to the top
+      }
+    };
+  </script>
 
 </main>
 
