@@ -81,14 +81,11 @@ def home(request):
     date = request.GET.get('date', '')
     time = request.GET.get('time', '')
 
-    # Apply location filter if provided
+    # Filters:
     if location:
         rooms = rooms.filter(location__icontains=location)
-
-    # Apply date filter if provided
     if date:
         rooms = rooms.filter(date=date)
-
     if time:
         rooms = rooms.filter(start_time__lte=time, end_time__gte=time)
         
@@ -125,21 +122,19 @@ def room(request,pk):
     room.has_joined = room.participants.filter(id=request.user.id).exists() 
 
     
-    # geocode_url = f"https://maps.googleapis.com/maps/api/geocode/json?address={room.location}&key={settings.GOOGLE_API_KEY}"
-    # response = requests.get(geocode_url)
-    # geocode_data = response.json()
+    geocode_url = f"https://maps.googleapis.com/maps/api/geocode/json?address={room.location}&key={settings.GOOGLE_API_KEY}"
+    response = requests.get(geocode_url)
+    geocode_data = response.json()
 
-    # if geocode_data['status'] == 'OK':
-    #     latitude = geocode_data['results'][0]['geometry']['location']['lat']
-    #     longitude = geocode_data['results'][0]['geometry']['location']['lng']
-    # else:
-    #     latitude = 0
-    #     longitude = 0  
+    if geocode_data['status'] == 'OK':
+        latitude = geocode_data['results'][0]['geometry']['location']['lat']
+        longitude = geocode_data['results'][0]['geometry']['location']['lng']
+
 
     context = {'room': room,  'participants': participants, 'activities': activities,
                 'GOOGLE_API_KEY': settings.GOOGLE_API_KEY, 
-                # 'latitude': room.latitude,
-                # 'longitude': room.longitude,
+                'latitude': latitude,
+                'longitude': longitude,
                 }
     return render(request, 'base/room.html', context)
 
