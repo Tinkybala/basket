@@ -69,6 +69,14 @@ const conversationThread = document.querySelector(".room__box");
 if (conversationThread) conversationThread.scrollTop = conversationThread.scrollHeight;
 
 
+//Make event card clickable
+const events = document.querySelectorAll(".roomListRoom");
+events.forEach((e) => {
+  const link = e.querySelector(".roomListRoom__meta a").href;
+  e.addEventListener("click", () => {
+    window.location.href = link;
+  });
+})
 
 
 

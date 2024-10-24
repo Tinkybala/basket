@@ -378,6 +378,11 @@ a {
   font-size: 2.3rem;
   color: var(--color-light);
   font-family: "Chalkduster", fantasy;
+  transition: color 0.4s ease;
+}
+
+.header__logo > h1:hover {
+  color: var(--color-main);
 }
 
 .header__search > label {
@@ -768,10 +773,15 @@ a {
 
 .roomListRoom {
   margin-bottom: 1.5rem;
-  background-color: var(--color-dark);
+  background-color: black;
   border-radius: 1rem;
   padding: 2rem;
-  border-bottom: 2px solid var(--color-main-light); /* Divider between rooms */
+  border-bottom: 2px solid var(--color-main); /* Divider between rooms */
+}
+
+.roomListRoom:hover{
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .roomListRoom:last-child {
