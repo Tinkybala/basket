@@ -358,13 +358,14 @@ a {
 .header > .container {
   display: flex;
   gap: 5rem;
+  align-items: center;
 }
 
 .header__logo,
 .header__user {
   display: flex;
   gap: 2rem;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .header__logo > img {
