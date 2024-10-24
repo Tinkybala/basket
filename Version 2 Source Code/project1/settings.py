@@ -113,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 
-GOOGLE_API_KEY = 'AIzaSyBq33HoYjmy8U1NtPlaCzRtmRq01W6ltFQ'
+GOOGLE_API_KEY = 'OurAPI'
 
 
 LANGUAGE_CODE = "en-us"
