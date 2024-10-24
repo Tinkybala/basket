@@ -4,7 +4,10 @@
     <div class="container">
       <a href="{% url 'home' %}" class="header__logo">
         <img src="{% static 'images/logomaker1725347116876.png' %}" alt="Logo" style="width: 50px; height: auto;"/>
-        <h1>BALLERSLYFE</h1>
+        <h1>
+          <span class="white">BALLERS</span>
+          <span class="black">LYFE</span>
+        </h1>
       </a>
       <form class="header__search" method="GET", action="{% url 'home' %}">
         <label>

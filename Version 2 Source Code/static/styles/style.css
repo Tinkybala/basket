@@ -27,9 +27,9 @@
 } */
 
 :root {
-  --color-main: #ef7f29; /* Basketball Orange */
+  --color-main: #ffa31a; /* Basketball Orange */
   --color-main-light: #FFF4E0; /* Court Beige */
-  --color-dark: #2A2F36; /* Dark Text */
+  --color-dark: #151515; /* Dark Text */
   --color-dark-medium: #64798C; /* Muted Gray Blue */
   --color-dark-light: #68717b; /* Light Gray Blue */
   --color-light: #FFFFFF; /* White for text */
@@ -38,6 +38,7 @@
   --color-bg: #0F1924; /* Dark Court Background */
   --color-success: #28A745; /* Green for success */
   --color-error: #DC3545; /* Red for error */
+  --color-black: #0e0e0e;
 }
 
 /*========== base styles ==========*/
@@ -353,7 +354,7 @@ a {
 
 .header {
   padding: 1.5rem;
-  background-color: var(--color-dark);
+  background-color: var(--color-black);
 }
 
 .header > .container {
@@ -376,10 +377,18 @@ a {
 }
 
 .header__logo > h1 {
-  font-weight: 500;
+  font-weight: bold;
   font-size: 2.3rem;
   color: var(--color-light);
-  font-family: "Chalkduster", fantasy;
+  font: Arial;
+  transition: color 0.4s ease;
+  display: flex;
+}
+
+.header__logo > h1 .black {
+  background-color: var(--color-main);
+  color: var(--color-black);
+  border-radius: 5px;
   transition: color 0.4s ease;
 }
 
@@ -393,7 +402,7 @@ a {
   display: flex;
   align-items: center;
   gap: 1rem;
-  border-radius: 4px;
+  border-radius: 20px;
 }
 
 .header__search svg {
@@ -765,7 +774,7 @@ a {
 /*========== Room List Room ==========*/
 
 .parentroomlistcontainer{ 
-  background-color: var(--color-dark); /* Background for the container */
+  background-color: var(--color-black); /* Background for the container */
   border-radius: 1rem;
   padding: 1rem;
   max-height: 675px; /* Adjust this height as needed */
@@ -775,7 +784,7 @@ a {
 
 .roomListRoom {
   margin-bottom: 1.5rem;
-  background-color: black;
+  background-color: var(--color-dark);
   border-radius: 1rem;
   padding: 2rem;
   border-bottom: 2px solid var(--color-main); /* Divider between rooms */
@@ -1413,7 +1422,7 @@ a {
   border: 2px solid var(--color-dark-medium); 
   border-radius: 0.7rem; 
   padding: 2rem; 
-  background-color: var(--color-dark); 
+  background-color: var(--color-black); 
   margin-bottom: 2rem; 
 }
 
@@ -1425,7 +1434,8 @@ a {
 }
 
 .filters__form input {
-    background-color: transparent; /* Keep inputs transparent for better visibility */
+    background-color: var(--color-dark); /* Keep inputs transparent for better visibility */
+    border-radius: 20px;
 }
 
 /* Icons */
