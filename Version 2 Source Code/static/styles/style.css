@@ -135,6 +135,7 @@ a {
   max-width: 200rem;
   width: 90%;
   margin: auto;
+  column-gap: 10rem;
 }
 
 .container3 {
@@ -935,9 +936,7 @@ a {
 
 /* Header of Recent Activities */
 .activities__top {
-  background: var(--color-dark-light); 
   padding: 1rem 2rem;
-  border-bottom: 1px solid var(--color-dark-medium);
 }
 
 .activities__top span {
@@ -954,9 +953,7 @@ a {
   height: calc(100% - 60px); /* Adjust height dynamically based on header */
   min-height: 500px; /* Set a minimum height to make the box appear larger when empty */
   overflow-y: auto; 
-  background-color: var(--color-dark-light); /* Background similar to Participants list */
   border-radius: 5px;
-  border: 1px solid var(--color-dark-medium);
   display: block;  /* Ensure activities are stacked vertically */
 }
 
@@ -1416,7 +1413,7 @@ a {
   border: 2px solid var(--color-dark-medium); 
   border-radius: 0.7rem; 
   padding: 2rem; 
-  background-color:#333335; 
+  background-color: var(--color-dark); 
   margin-bottom: 2rem; 
 }
 
