@@ -30,7 +30,7 @@
   --color-main: #ffa31a; /* Basketball Orange */
   --color-main-light: #FFF4E0; /* Court Beige */
   --color-dark: #151515; /* Dark Text */
-  --color-dark-medium: #64798C; /* Muted Gray Blue */
+  --color-dark-medium: #252525; /* Muted Gray Blue */
   --color-dark-light: #68717b; /* Light Gray Blue */
   --color-light: #FFFFFF; /* White for text */
   --color-gray: #7A8691; /* Gray for less prominent text */
@@ -184,6 +184,8 @@ a {
 .btn--main {
   background-color: var(--color-main);
   color: var(--color-dark);
+  border-radius: 20px;
+  font-weight: bold;
 }
 
 .btn:hover {
@@ -300,7 +302,7 @@ a {
   position: absolute;
   top: 5rem;
   right: 0.5rem;
-  background: var(--color-dark-light);
+  background: var(--color-dark);
   border-radius: 5px;
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
   overflow: hidden;
@@ -387,7 +389,9 @@ a {
 
 .header__logo > h1 .black {
   background-color: var(--color-main);
-  color: var(--color-black);
+  color: black;
+  padding: 1px;
+  margin-left: 1px;
   border-radius: 5px;
   transition: color 0.4s ease;
 }
@@ -397,7 +401,7 @@ a {
 }
 
 .header__search > label {
-  background-color: white;
+  background-color: var(--color-dark-medium);
   padding: 1.3rem 1rem;
   display: flex;
   align-items: center;
@@ -417,7 +421,7 @@ a {
   background: transparent;
   border: none;
   outline: none;
-  color: black;
+  color: var(--color-light);
 }
 
 /* @media screen and (max-width: 800px) {
@@ -657,14 +661,18 @@ a {
 }
 
 .form__action .btn--filter {
-  background-color:#de7615; /* Red background to indicate "Quit" */
-  color: black; /* White text */
+  background-color: var(--color-black); /* Red background to indicate "Quit" */
+  color: white; /* White text */
   font-size: 1.4rem;
   padding: 0.5rem 3rem;
-  border: none;
-  border-radius: 0.5rem;
+  border: 2px solid var(--color-dark-medium);
+  border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.5s ease;
+}
+
+.form__action .btn--filter:hover {
+  background-color: var(--color-dark-medium);
 }
 
 .form__hide {
@@ -761,7 +769,7 @@ a {
 .roomList__header h2 {
   text-transform: uppercase;
   font-weight: 800;
-  color:#ff8000;
+  color: var(--color-main);
   letter-spacing: 1px;
   font-size: 2.4rem;
 }
@@ -935,7 +943,7 @@ a {
 ================================*/
 /* Recent Activities - Fill screen */
 .activities {
-  background: var(--color-dark); /* Same background as Participants */
+  background: var(--color-black); /* Same background as Participants */
   max-height: 770px; 
   border-radius: 0.7rem;
   overflow-y: auto;
@@ -979,7 +987,7 @@ a {
 .activities__box {
   margin-bottom: 1.5rem;
   padding: 1rem;
-  background-color: var(--color-bg);
+  background-color: var(--color-dark);
   border-radius: 5px;
   border: 1px solid var(--color-dark-medium);
 }
@@ -1419,10 +1427,9 @@ a {
 }
 
 .filters {
-  border: 2px solid var(--color-dark-medium); 
   border-radius: 0.7rem; 
   padding: 2rem; 
-  background-color: var(--color-black); 
+  background-color: black; 
   margin-bottom: 2rem; 
 }
 
@@ -1434,7 +1441,7 @@ a {
 }
 
 .filters__form input {
-    background-color: var(--color-dark); /* Keep inputs transparent for better visibility */
+    background-color: var(--color-dark-medium); /* Keep inputs transparent for better visibility */
     border-radius: 20px;
 }
 
