@@ -2704,10 +2704,10 @@
           <mxGeometry x="40" y="379" width="760" height="200" as="geometry" />
         </mxCell>
         <mxCell id="hC5hFzZ_lVwEirBujyLL-8" value="Event Management" style="html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#99ffff;shape=mxgraph.archimate3.application;appType=func;archiType=rounded;" vertex="1" parent="1">
-          <mxGeometry x="200" y="421.5" width="150" height="75" as="geometry" />
+          <mxGeometry x="154.4" y="450" width="150" height="75" as="geometry" />
         </mxCell>
         <mxCell id="hC5hFzZ_lVwEirBujyLL-9" value="User Management" style="html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#99ffff;shape=mxgraph.archimate3.application;appType=func;archiType=rounded;" vertex="1" parent="1">
-          <mxGeometry x="520" y="421.5" width="150" height="75" as="geometry" />
+          <mxGeometry x="520" y="441.5" width="150" height="75" as="geometry" />
         </mxCell>
         <mxCell id="hC5hFzZ_lVwEirBujyLL-10" value="" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.chrome" vertex="1" parent="1">
           <mxGeometry x="380.6" y="147" width="74.8" height="75.4" as="geometry" />
