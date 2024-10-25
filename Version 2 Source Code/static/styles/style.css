@@ -563,7 +563,7 @@ a {
 .layout__boxHeader {
   display: flex;
   padding: 1.5rem;
-  background-color: var(--color-dark-light);
+  background-color: var(--color-black);
 }
 
 .layout__boxTitle {
@@ -622,10 +622,9 @@ a {
 .form__group input,
 .form__group textarea,
 .form__group select {
-  background: transparent;
-  border: 1px solid var(--color-dark-light);
+  background: var(--color-dark-medium);
   padding: 1rem;
-  border-radius: 3px;
+  border-radius: 20px;
   width: 100%;
   color: var(--color-light);
   font-weight: 500;
@@ -800,7 +799,7 @@ a {
 
 .roomListRoom:hover{
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--color-dark-medium);
 }
 
 .roomListRoom:last-child {
@@ -1437,7 +1436,6 @@ a {
 .filters__form label,
 .filters__form button {
     color: white; /* White text for inputs, labels, and buttons */
-    border-color: white; /* White borders for input fields */
 }
 
 .filters__form input {
