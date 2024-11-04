@@ -7,21 +7,45 @@ BOT_TOKEN = os.environ.get('BOT_TOKEN', '7945531515:AAEBPKD67Jr1aAiXuy-WW-QCIUnB
 bot = telebot.TeleBot(BOT_TOKEN)
 
 
-@bot.message_handler(commands=['start', 'hello'])
-def send_welcome(message):
-    bot.reply_to(message, "Howdy, how are you doing?")
+@bot.message_handler(commands=['start'])
+def handle_start(message):
+    #Extract session ID
+    params = message.text.split()
+    if len(params) > 1:
+        session_id = params[1]
+        telegram_id = message.from_user.id
+        telegram_name = message.from_user.username
+
+        try:
+            # Make POST request to Django
+            response = requests.post(
+                'http://127.0.0.1:8000/telegram',
+                data = {
+                    'telegram_id': telegram_id,
+                    'telegram_name': telegram_name,
+                    'session_id': session_id,
+                }
+            )
+            print(response)
+
+            if response.status_code == 200:
+                bot.reply_to(message, "Sup, welcome baller!")
+            else:
+                bot.send_message(message.chat.id, "Something went wrong. Try again later baller!")
+        except Exception as e:
+            bot.send_message(message.chat.id, f'An error occurred: {str(e)}, {response}')
 
 @bot.message_handler(commands=['activity'])
 def send_activity(message):
     user_id = message.from_user.id
     try:
         # Make a GET request to the Django API
-        response = requests.get('http://127.0.0.1:8000/get-info', headers={'Authorization': f"{user_id}"})
+        response = requests.get('http://127.0.0.1:8000/telegram', headers={'Authorization': f"{user_id}"})
         if response.status_code == 200:
             data = response.json()
             rooms = data.get('rooms', 'No information available.')
             for room in rooms:
-                message_str = room['room_name'] + ":" + room["date"]
+                message_str = f"Event Name: {room['room_name']}\nDate: {room['date']}"
 
                 bot.send_message(message.chat.id, message_str)
             #bot.send_message(message.chat.id, info)

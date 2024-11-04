@@ -16,6 +16,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import telebot
 from django.views.decorators.http import require_GET
+from django.views import View
+from django.utils.decorators import method_decorator
 
 
 
@@ -114,6 +116,11 @@ def home(request):
 
         room.is_full = participants_count >= room.pax_required  # Check if the room is full
 
+    #get session info to pass to telegram link
+    session_id = request.user.id
+    request.session['session_id'] = session_id
+    telegram_link = f"https://t.me/basketballReminderbot?start={session_id}"
+
 
         
     context =  {
@@ -123,7 +130,7 @@ def home(request):
         'room_messages': room_messages,
         'activities': activities,
         'GOOGLE_API_KEY': settings.GOOGLE_API_KEY,
-
+        'telegram_link': telegram_link,
         }
     
     return render(request, 'base/home.html',context)
@@ -443,9 +450,9 @@ def filter_events(request):
 bot = telebot.TeleBot('7945531515:AAEBPKD67Jr1aAiXuy-WW-QCIUnBsdNGUDw')
 
 
-
+'''
 @require_GET
-def get_info(request):
+def telegram(request):
     req_header = request.headers
     user_id = req_header.get('Authorization')
     print(user_id)
@@ -472,3 +479,67 @@ def get_info(request):
     }
     #print(JsonResponse(data))
     return JsonResponse(data)
+'''
+
+@method_decorator(csrf_exempt, name='dispatch')
+class Telegram(View):
+    def get(self, request):
+        req_header = request.headers
+        telegram_id = req_header.get('Authorization')
+        user = User.objects.get(telegram_id=telegram_id)
+        # Logic to get the information you want to send
+        rooms_joined = list(Room.objects.filter(participants=user))
+
+        #user not in any event
+        if not rooms_joined:
+            return JsonResponse({'info': "You are not in any events"})
+        
+        messages = []
+        for room in rooms_joined:
+            room_message = {
+                'room_name': room.name,
+                'date': room.date.isoformat()  # Convert date to ISO format for better JSON compatibility
+            }
+            #print(room_message)
+            messages.append(room_message)
+            
+        data = {
+            'info': 'This is the information from the Django site.',
+            'rooms': messages  # List of rooms with their details
+        }
+        #print(JsonResponse(data))
+        return JsonResponse(data)
+
+    
+    def post(self, request):
+        # Extract data from POST request
+        telegram_id = request.POST.get('telegram_id')
+        telegram_name = request.POST.get('telegram_name')
+        session_id = request.POST.get('session_id')
+
+        if not telegram_id or not session_id:
+            return HttpResponseBadRequest("Missing Data")
+        
+        try:
+            #get user of the session id
+            user = User.objects.get(id=session_id)  
+
+            #add telegram details to user model
+            user.telegram_id = telegram_id
+            user.telegram_name = telegram_name
+            user.save()
+
+            return JsonResponse({
+                'status': 'success',
+                'telegram_id': telegram_id,
+                'user_id': user.id,
+                'message': "successful linked to telegram"
+
+            })
+
+        except User.DoesNotExist:
+            return JsonResponse({'status':'error', 'message': 'Session ID invalid or expired'})
+
+        return HttpResponseBadRequest('invalid request method')
+            
+

@@ -17,7 +17,8 @@ class User(AbstractUser):
     username = models.CharField(max_length=200, unique=True, null=True)
     bio = models.TextField(null=True)
     avatar = models.ImageField(null=True, default="avatar.svg")
-    tele = models.CharField(max_length=200, null=True)
+    telegram_id = models.CharField(max_length=200, null=True, blank=True)
+    telegram_name = models.CharField(max_length=200, null=True, blank=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
