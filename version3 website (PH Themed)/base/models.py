@@ -17,6 +17,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=200, unique=True, null=True)
     bio = models.TextField(null=True)
     avatar = models.ImageField(null=True, default="avatar.svg")
+    tele = models.CharField(max_length=200, null=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
@@ -72,6 +73,7 @@ class Message(models.Model):
     body = models.TextField()
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    
 
     class Meta:
         ordering = ['-updated', '-created']

@@ -12,6 +12,10 @@ from celery import shared_task
 from django.utils import timezone
 import requests
 from math import radians, sin, cos, sqrt, atan2
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import telebot
+from django.views.decorators.http import require_GET
 
 
 
@@ -435,3 +439,36 @@ def filter_events(request):
 
     # Return filtered events to the template
     return render(request, 'home.html', {'events': combined_events})
+
+bot = telebot.TeleBot('7945531515:AAEBPKD67Jr1aAiXuy-WW-QCIUnBsdNGUDw')
+
+
+
+@require_GET
+def get_info(request):
+    req_header = request.headers
+    user_id = req_header.get('Authorization')
+    print(user_id)
+    user = User.objects.get(tele=user_id)
+    # Logic to get the information you want to send
+    rooms_joined = list(Room.objects.filter(participants=user))
+
+    #user not in any event
+    if not rooms_joined:
+        return JsonResponse({'info': "You are not in any events"})
+    
+    messages = []
+    for room in rooms_joined:
+        room_message = {
+            'room_name': room.name,
+            'date': room.date.isoformat()  # Convert date to ISO format for better JSON compatibility
+        }
+        #print(room_message)
+        messages.append(room_message)
+        
+    data = {
+        'info': 'This is the information from the Django site.',
+        'rooms': messages  # List of rooms with their details
+    }
+    #print(JsonResponse(data))
+    return JsonResponse(data)
