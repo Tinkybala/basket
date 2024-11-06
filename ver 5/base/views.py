@@ -33,6 +33,83 @@ from math import radians, sin, cos, sqrt, atan2
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 
+import random
+from django.core.mail import send_mail
+from django.contrib.auth.models import User  # Assuming User model is used
+
+User = get_user_model()
+
+def forget_password(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+
+        # Check if a user with the provided username and email exists
+        try:
+            user = User.objects.get(username=username, email=email)
+        except User.DoesNotExist:
+            # Show an error message and stay on the forget password page
+            messages.error(request, 'User with the provided username and email does not exist.')
+            return redirect('forget_password')
+
+        # Generate a random 6-digit verification code
+        verification_code = random.randint(100000, 999999)
+        request.session['verification_code'] = verification_code  # Store code in session
+        request.session['user_id'] = user.id  # Store user ID for password reset
+
+        # Send email with verification code
+        send_mail(
+            'Password Reset Verification Code',
+            f'Your verification code is {verification_code}',
+            'from@example.com',  # Replace with your sender email
+            [email],
+            fail_silently=False,
+        )
+        
+        # Redirect to the code verification page
+        return redirect('verify_code')
+
+    # Render the forget password page if method is not POST
+    return render(request, 'base/forget_password.html')
+    
+def verify_code(request):
+    if request.method == 'POST':
+        code_entered = request.POST.get('verification_code')
+        verification_code = request.session.get('verification_code')
+        
+        if str(code_entered) == str(verification_code):
+            return redirect('reset_password')
+        else:
+            messages.error(request, 'Invalid verification code.')
+            return redirect('verify_code')
+
+    return render(request, 'base/verify_code.html')
+
+def reset_password(request):
+    if request.method == 'POST':
+        new_password = request.POST.get('new_password')
+        confirm_password = request.POST.get('confirm_password')
+        
+        if new_password == confirm_password:
+            user_id = request.session.get('user_id')
+            user = User.objects.get(id=user_id)
+            user.set_password(new_password)
+            user.save()
+            
+            # Clear session data
+            request.session.pop('verification_code', None)
+            request.session.pop('user_id', None)
+            
+            messages.success(request, 'Password successfully reset.')
+            return redirect('login')
+        else:
+            messages.error(request, 'Passwords do not match.')
+            return redirect('reset_password')
+
+    return render(request, 'base/reset_password.html')
+
+
+
 
 # Email Related:
 def activate(request, uidb64, token):
@@ -335,7 +412,7 @@ def userProfile(request, pk):
     rooms_hosted_by_user = Room.objects.filter(host=user)  # Filter rooms hosted by this user
     rooms_joined = Room.objects.filter(participants=user)  # Rooms joined by the user
 
-    activities = get_user_activities(request.user)
+    activities = get_user_activities(user)
 
     for room in rooms_hosted_by_user:
         participants_count = room.participants.count()

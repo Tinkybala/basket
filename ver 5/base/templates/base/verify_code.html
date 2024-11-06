@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class="auth layout">
+    <div class="container">
+        <div class="layout__box">
+            <div class="layout__boxHeader">
+                <div class="layout__boxTitle">
+                    <h3>Enter Validation Code</h3>
+                </div>
+            </div>
+            
+            {% if messages %}
+            <div class="error-messages">
+            {% for message in messages %}
+                <p class="error">{{ message }}</p>
+            {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="layout__body">
+                <form method="POST" class="profile-form">
+                    {% csrf_token %}
+                    <div class="form__group">
+                        <label for="verification_code">We have sent a verfication code to your email...</label>
+                        <label for "verification_code"> Please Enter Here:</label>
+                        <input id="verification_code" type="text" name="verification_code" required class="form__input" placeholder="######">
+                    </div>
+                    
+                    <!-- Submit and Back to Login Buttons -->
+                    <div class="form__actions">
+                        <button type="submit" class="btn btn--main">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+

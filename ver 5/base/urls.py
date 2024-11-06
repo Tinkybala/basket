@@ -18,10 +18,15 @@ urlpatterns = [
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
     path('update-notification-preferences/', views.updateNotificationPreferences, name='update-notification-preferences'),
     path('telegram', views.Telegram.as_view(), name="telegram"),
+    
+    # Other URL patterns
+    path('forget-password/', views.forget_password, name='forget_password'),
+    path('verify-code/', views.verify_code, name='verify_code'),
+    path('reset-password/', views.reset_password, name='reset_password'),
 
 
 
     # For Future Use
-    path('delete-message/<str:pk>/', views.deleteMessage, name="delete-message"), 
+    path('delete-message/<str:pk>/', views.deleteMessage, name="delete-message") 
     
 ]
