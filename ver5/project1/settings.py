@@ -170,3 +170,7 @@ PASSWORD_RESET_TIMEOUT=14400
 CRONJOBS = [
     ('* * * * *', 'base.cron.send_event_reminders')  # Run every minute
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://basket-tu6z.onrender.com',
+]

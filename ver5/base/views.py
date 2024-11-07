@@ -162,6 +162,7 @@ def registerUser(request):
 
     return render(request, 'base/login_register.html', {'form': form})
 
+
 def loginUser(request):
     page = 'login'
 
