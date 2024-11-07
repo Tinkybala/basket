@@ -1,0 +1,13 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "bot.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "env": {
+      "BOT_TOKEN": "your-bot-token-here",
+      "WEBHOOK_URL": "https://your-vercel-url.vercel.app/webhook"
+    }
+  }
