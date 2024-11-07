@@ -46,10 +46,12 @@ def send_activity(message):
             rooms = data.get('rooms', [])
             if rooms:
                 for room in rooms:
-                    message_str = f"Event Name: {room['room_name']}\nDate: {room['date']}"
+                    message_str = f"Event Name: {room['room_name']}\nDate: {room['date']}\n Time: {room['time']}"
                     bot.send_message(message.chat.id, message_str)
             else:
                 bot.send_message(message.chat.id, "You are not in any events.")
+        elif response.status_code == 404:
+            bot.send_message(message.chat.id, 'You have not linked your account to telegram. Link your account on the BallersLyfe website to enable telegram updates')
         else:
             bot.send_message(message.chat.id, 'Failed to retrieve information from the website.')
     except Exception as e:

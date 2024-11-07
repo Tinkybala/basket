@@ -561,16 +561,7 @@ a {
   margin: 3rem;
 }
 
-@media screen and (max-width: 900px) {
-  .activities,
-  .topics {
-    display: none;
-  }
 
-  .layout--3 > .container > div:nth-child(2) {
-    flex-basis: 100%;
-  }
-}
 
 /*==============================
 =>  Topics
@@ -1519,4 +1510,63 @@ input[type="time"]::-moz-focus-inner {
 .error {
   margin: 5px 0; /* Space between individual messages */
   font-weight: bold; /* Bold text for emphasis */
+}
+
+
+
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 50%;
+  }
+
+  .container, .container1, .container2, .container3, .container4 {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 1rem;
+    margin: 0;
+  }
+
+  .container2, .container3 {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .header {
+    padding: 1rem;
+  }
+
+  .header > .container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .header__logo > h1 {
+    font-size: 2rem;
+  }
+
+  .header__search input {
+    width: 100%;
+    font-size: 1.4rem;
+  }
+
+  .dropdown-menu {
+    right: 1rem;
+    width: 90%;
+    font-size: 1.2rem;
+  }
+
+  .avatar.avatar--small img, .avatar.avatar--medium img {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
 }

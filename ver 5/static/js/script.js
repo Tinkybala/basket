@@ -78,4 +78,3 @@ events.forEach((e) => {
     window.location.href = link;
   });
 })
-

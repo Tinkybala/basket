@@ -469,7 +469,7 @@ class Telegram(View):
                 return JsonResponse({'info': "You are not in any events"})
 
             # Prepare room details for response
-            messages = [{'room_name': room.name, 'date': room.date.isoformat()} for room in rooms_joined]
+            messages = [{'room_name': room.name, 'date': room.date.isoformat(), 'time': room.start_time.strftime("%I:%M%p")} for room in rooms_joined]
             
             return JsonResponse({
                 'info': 'This is the information from the Django site.',
