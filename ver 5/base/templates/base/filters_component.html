@@ -20,19 +20,19 @@
         <!-- Location Filter (for keyword matching) -->
         <div class="form__group">
             <label for="location">Location</label>
-            <input type="text" name="location" id="location" placeholder="Search by location" value="{{ request.GET.location }}">
+            <input type="text" name="location" id="location" placeholder="Search by location" aria-label="search location">
         </div>
 
         <!-- Date Filter -->
         <div class="form__group">
             <label for="date">Date</label>
-            <input type="date" name="date" id="date" value="{{ request.GET.date }}">
+            <input type="date" name="date" id="date">
         </div>
 
         <!-- Time Filter -->
         <div class="form__group">
             <label for="time">Start Time</label>
-            <input type="time" name="time" id="time" value="{{ request.GET.time }}">
+            <input type="time" name="time" id="time">
         </div>
     </form>
 </div>
