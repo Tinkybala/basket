@@ -1,0 +1,67 @@
+<div class="filters">
+    <div class="filters__header">
+        <h2>Search By Filters</h2>
+    </div>
+
+    <form method="GET" action="{% url 'home' %}" class="filters__form">
+        <!-- Submit Button -->
+        <div class="form__action">
+            <button class="btn btn--filter" type="submit">Apply Filters</button>
+            <button type="button" class="btn btn--filter" id="clear-filters-btn">Clear Filters</button>
+
+            <script>
+                // Clear filters and reload the page without any query parameters
+                document.getElementById('clear-filters-btn').addEventListener('click', function() {
+                    window.location.href = "{% url 'home' %}";
+                });
+            </script>
+        </div>
+
+        <!-- Location Filter (for keyword matching) -->
+        <div class="form__group">
+            <label for="location">Location</label>
+            <input type="text" name="location" id="location" placeholder="Search by location" aria-label="search location">
+        </div>
+
+        <!-- Date Filter -->
+        <div class="form__group">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date">
+        </div>
+
+        <!-- Time Filter -->
+        <div class="form__group">
+            <label for="time">Start Time</label>
+            <input type="time" name="time" id="time">
+        </div>
+    </form>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&libraries=places&callback=initMap" async defer></script>
+
+<script>
+    let autocomplete;
+
+    // Function to initialize the autocomplete functionality
+    function initAutocomplete() {
+        const input = document.getElementById('location');
+
+        // Initialize the autocomplete object and restrict it to Singapore and localities
+        autocomplete = new google.maps.places.Autocomplete(input, {
+            types: ['(regions)'], // Only search for regions or neighborhoods
+            componentRestrictions: { country: 'SG' } // Restrict search to Singapore
+        });
+
+        // Listener for when the user selects a place from the autocomplete dropdown
+        autocomplete.addListener('place_changed', function() {
+            const place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return; // If no geometry is available, exit
+            }
+
+            // Capture the selected location name and set it in the input
+            input.value = place.name; // Autofill the selected location
+            console.log("Selected location: " + place.name); // Optional log
+        });
+    }
+</script> 
