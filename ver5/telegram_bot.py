@@ -22,7 +22,7 @@ def handle_start(message):
         try:
             # Make POST request to Django server to link Telegram with user session
             response = requests.post(
-                'http://127.0.0.1:8000/telegram',
+                'https://basket-tu6z.onrender.com//telegram',
                 data={
                     'telegram_id': telegram_id,
                     'telegram_name': telegram_name,

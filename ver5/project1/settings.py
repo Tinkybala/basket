@@ -174,3 +174,6 @@ CRONJOBS = [
 CSRF_TRUSTED_ORIGINS = [
     'https://basket-tu6z.onrender.com',
 ]
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
