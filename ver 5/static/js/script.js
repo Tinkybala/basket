@@ -78,12 +78,3 @@ events.forEach((e) => {
     window.location.href = link;
   });
 })
-
-// Get the current date and time
-const now = new Date();
-const dateString = now.toISOString().split('T')[0]; // YYYY-MM-DD
-const timeString = now.toTimeString().slice(0, 5); // HH:mm
-
-// Corrected method names and variable names
-document.getElementById('date').value = dateString;
-document.getElementById('time').value = timeString;
