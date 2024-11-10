@@ -163,10 +163,6 @@ EMAIL_USE_TLS=True
 PASSWORD_RESET_TIMEOUT=14400
 
 
-# CRONJOBS = [
-#     ('*/15 * * * *', 'base.cron.send_event_reminders')
-# ]
-
 CRONJOBS = [
     ('* * * * *', 'base.cron.send_event_reminders')  # Run every minute
 ]
