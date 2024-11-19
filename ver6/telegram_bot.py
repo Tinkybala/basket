@@ -5,7 +5,7 @@ import telebot
 
 
 
-BOT_TOKEN = os.environ.get('BOT_TOKEN', '7945531515:AAEBPKD67Jr1aAiXuy-WW-QCIUnBsdNGUDw')
+BOT_TOKEN = os.environ.get('BOT_TOKEN', 'YourTelegramBotToken')
 bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=['start'])
