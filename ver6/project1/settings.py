@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 
-GOOGLE_API_KEY = 'AIzaSyBq33HoYjmy8U1NtPlaCzRtmRq01W6ltFQ'
+GOOGLE_API_KEY = 'YourGoogleAPIKey'
 
 
 
@@ -155,7 +155,7 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_FROM='scprojectballerlyfe@gmail.com'
 EMAIL_HOST_USER='scprojectballerlyfe@gmail.com'
-EMAIL_HOST_PASSWORD='fwkvstwtzqinhaia'
+EMAIL_HOST_PASSWORD='yourEmailPassword'
 EMAIL_PORT= 587
 EMAIL_USE_TLS=True
 
